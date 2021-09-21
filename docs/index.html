@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Indices and tables &mdash; RT2_Assignment1_1 1.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="#" class="icon icon-home"> RT2_Assignment1_1
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">Indices and tables</a><ul>
+<li><a class="reference internal" href="#rt2-assignment1-1-s-documentation">RT2_Assignment1_1’s documentation!</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-scripts.go_to_point_ac">Go To Point Action</a></li>
+<li><a class="reference internal" href="#module-scripts.user_interface">User Interface</a></li>
+<li><a class="reference internal" href="#position-service">Position Service</a></li>
+<li><a class="reference internal" href="#state-machine">State Machine</a></li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">RT2_Assignment1_1</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="#" class="icon icon-home"></a> &raquo;</li>
+      <li>Indices and tables</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="toctree-wrapper compound">
+</div>
+<div class="section" id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline"></a></h1>
+<ul class="simple">
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
+</ul>
+<div class="section" id="rt2-assignment1-1-s-documentation">
+<h2>RT2_Assignment1_1’s documentation!<a class="headerlink" href="#rt2-assignment1-1-s-documentation" title="Permalink to this headline"></a></h2>
+<p>This is the documentation of the RT2_Assignment1_1 package!</p>
+</div>
+</div>
+<div class="section" id="module-scripts.go_to_point_ac">
+<span id="go-to-point-action"></span><h1>Go To Point Action<a class="headerlink" href="#module-scripts.go_to_point_ac" title="Permalink to this headline"></a></h1>
+<span class="target" id="module-go_to_point_ac.py"></span><p>This node implements the go to point action server node.
+When an action request is received with a goal position, it drives the robot towards the goal.
+It drives the robot in three steps:
+- rotating the robot around its z-axis until it is oriented towards the goal point
+- going straight ahead until it reaches the goal point
+- rotating the robot around its z-axis until it is oriented in the goal orientation
+During the three steps, if a cancel request is received through the action server,
+the goal is aborted and the robot stops.</p>
+<dl class="simple">
+<dt>Subscribes to:</dt><dd><p>/odom</p>
+</dd>
+<dt>Publishes to:</dt><dd><p>/cmd_vel</p>
+</dd>
+<dt>Services:</dt><dd><p>/go_to_point_ac</p>
+</dd>
+</dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="scripts.go_to_point_ac.change_state">
+<span class="sig-prename descclassname"><span class="pre">scripts.go_to_point_ac.</span></span><span class="sig-name descname"><span class="pre">change_state</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scripts/go_to_point_ac.html#change_state"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scripts.go_to_point_ac.change_state" title="Permalink to this definition"></a></dt>
+<dd><p>this is change_state function of the robot
+This function takes as input the current state value of the robot.
+It updates the global variable <a href="#id1"><span class="problematic" id="id2">state_</span></a> accordingly with the current new state</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>state</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – the current state value of the robot (0, 1, 2)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="scripts.go_to_point_ac.clbk_odom">
+<span class="sig-prename descclassname"><span class="pre">scripts.go_to_point_ac.</span></span><span class="sig-name descname"><span class="pre">clbk_odom</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scripts/go_to_point_ac.html#clbk_odom"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scripts.go_to_point_ac.clbk_odom" title="Permalink to this definition"></a></dt>
+<dd><p>this is the callback function of /odom subscriber
+This function receives periodically the current odometry of the robot.
+It stores the position in the global variable <a href="#id3"><span class="problematic" id="id4">position_</span></a>
+It converts the orientation from quaternion to Euler representation and stores the yaw angle in global variable <a href="#id5"><span class="problematic" id="id6">yaw_</span></a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>msg</strong> (<em>Odomoetry</em>) – the current odometry of the robot received through the topic /odom.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="scripts.go_to_point_ac.done">
+<span class="sig-prename descclassname"><span class="pre">scripts.go_to_point_ac.</span></span><span class="sig-name descname"><span class="pre">done</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/scripts/go_to_point_ac.html#done"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scripts.go_to_point_ac.done" title="Permalink to this definition"></a></dt>
+<dd><p>This function is responsible for stopping the robot
+This function is responsible for stopping the robot after reaching the goal, or when the goal is cancelled.
+It publishes a zero velocity msg to the robot to stop it</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="scripts.go_to_point_ac.execute_action">
+<span class="sig-prename descclassname"><span class="pre">scripts.go_to_point_ac.</span></span><span class="sig-name descname"><span class="pre">execute_action</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">goal</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scripts/go_to_point_ac.html#execute_action"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scripts.go_to_point_ac.execute_action" title="Permalink to this definition"></a></dt>
+<dd><p>This is the callback function of /go_to_point_ac action service
+This function takes as input the goal request (x, y, theta). It initializes the robot state to 0.
+Then, it loops until the goal position is reached or it is preempted.
+In each loop, it does the following:
+- it checks if a cancel request has been sent. If yes, it cancels the goal, stops the robot, and break from the loop.
+- it publishes the current robot’s position as a feedback of the action service
+- it checks the current state of the robot and based on each state, it calls the appropriate function to drive the robot towards the goal.
+- When the goal is reached, it stops the robot and sets the action result</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>goal</strong> (<em>Point</em>) – the requested goal position</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>always true</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="scripts.go_to_point_ac.fix_final_yaw">
+<span class="sig-prename descclassname"><span class="pre">scripts.go_to_point_ac.</span></span><span class="sig-name descname"><span class="pre">fix_final_yaw</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">des_yaw</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scripts/go_to_point_ac.html#fix_final_yaw"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scripts.go_to_point_ac.fix_final_yaw" title="Permalink to this definition"></a></dt>
+<dd><p>This function is responsible for orienting the robot’s yaw angle in the final goal orientation
+This function takes as input the goal angle. It calculates the error angle needed to be oriented in the desired angle
+It, then, publishes angular twist msg to the robot to be rotated around the z-axis.
+It checks that the angular velocity msg is in the range between lower and upper bounds.
+If the error angle to the goal is less than the precision threshold, it changes the state to 3 to indicate finishing the rotation step</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>des_yaw</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – the desired yaw angle of the goal</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="scripts.go_to_point_ac.fix_yaw">
+<span class="sig-prename descclassname"><span class="pre">scripts.go_to_point_ac.</span></span><span class="sig-name descname"><span class="pre">fix_yaw</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">des_pos</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scripts/go_to_point_ac.html#fix_yaw"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scripts.go_to_point_ac.fix_yaw" title="Permalink to this definition"></a></dt>
+<dd><p>This function is responsible for orienting the robot’s yaw angle towards the goal point
+This function takes as input the goal point. It calculates the error angle needed to be oriented towards the goal.
+It, then, publishes angular twist msg to the robot to be rotated around the z-axis.
+It checks that the angular velocity msg is in the range between lower and upper bounds.
+If the error yaw angle to the goal is less than the precision threshold, it changes the state to 1 to indicate finishing the rotation step</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>des_pos</strong> (<em>Point</em>) – the desired position of the goal</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="scripts.go_to_point_ac.go_straight_ahead">
+<span class="sig-prename descclassname"><span class="pre">scripts.go_to_point_ac.</span></span><span class="sig-name descname"><span class="pre">go_straight_ahead</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">des_pos</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scripts/go_to_point_ac.html#go_straight_ahead"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scripts.go_to_point_ac.go_straight_ahead" title="Permalink to this definition"></a></dt>
+<dd><p>This function is responsible for driving the robot straight towards a goal position
+This function takes as input the desired goal position. It calcualates the error in distance between the current position and the goal.
+If the distance error is greater than the distance precision threshold, it publishes a Twist msg with a linear velocity to the robot.
+When the distance error is less than the threshold, it changes the state to 2 to indicate finishing the go_straight_ahead step</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>des_pos</strong> (<em>Point</em>) – the desired goal position</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="scripts.go_to_point_ac.main">
+<span class="sig-prename descclassname"><span class="pre">scripts.go_to_point_ac.</span></span><span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/scripts/go_to_point_ac.html#main"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scripts.go_to_point_ac.main" title="Permalink to this definition"></a></dt>
+<dd><p>This is the main function of the node
+It initializes the node handle, the publisher to /cmd_vel topic
+the subscriber to /odom, and the action server of /go_to_point_ac service.
+It assigns the function execute_action as a callback function to the action server</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="scripts.go_to_point_ac.normalize_angle">
+<span class="sig-prename descclassname"><span class="pre">scripts.go_to_point_ac.</span></span><span class="sig-name descname"><span class="pre">normalize_angle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">angle</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scripts/go_to_point_ac.html#normalize_angle"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scripts.go_to_point_ac.normalize_angle" title="Permalink to this definition"></a></dt>
+<dd><p>This function normalizes the angle to be in the range from -pi to pi
+This function takes as input an angle expressed in randians. It checks if this angle is in the range of -pi to pi
+If it is not, the function normalizes the angle to be in the range.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>angle</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – the requested angle to be normalized</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the normalized angle</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-scripts.user_interface">
+<span id="user-interface"></span><h1>User Interface<a class="headerlink" href="#module-scripts.user_interface" title="Permalink to this headline"></a></h1>
+<span class="target" id="module-user_interface.py"></span><p>This node implements the user interface.
+It receives from the user a start or stop command, and sends it to the /user_interface server</p>
+<dl class="simple">
+<dt>Clients:</dt><dd><p>/user_interface</p>
+</dd>
+</dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="scripts.user_interface.main">
+<span class="sig-prename descclassname"><span class="pre">scripts.user_interface.</span></span><span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/scripts/user_interface.html#main"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scripts.user_interface.main" title="Permalink to this definition"></a></dt>
+<dd><p>It initializes the node handle and the client to the service /user_interface
+It waits for an input from the user of 1 or 0 to start the robot or stop it, respectively.
+If the user inputs 1, it sends a “start” request to the /user_interface service
+If the user inputs 0, it sends a “stop” request to the /user_interface service</p>
+</dd></dl>
+
+</div>
+<div class="section" id="position-service">
+<h1>Position Service<a class="headerlink" href="#position-service" title="Permalink to this headline"></a></h1>
+<p>this file is an implementation of the random position server </p>
+<p><p>Services:</p>
+<p>/position_server</p>
+<dl class="simple">
+<dt><strong>Author</strong></dt><dd><p>Carmine Recchiuto </p>
+</dd>
+<dt><strong>Version</strong></dt><dd><p>0.1 </p>
+</dd>
+<dt><strong>Date</strong></dt><dd><p>20/09/2021</p>
+</dd>
+</dl>
+</p>
+<p>Description :</p>
+<p>This node implements the random position server. When the server receives a request of minimum and maximum numbers, it replies with three random position values for x, y, and theta between the minimum and maximum limits. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv48randMToNdd">
+<span id="_CPPv38randMToNdd"></span><span id="_CPPv28randMToNdd"></span><span id="randMToN__double.double"></span><span class="target" id="position__service_8cpp_1a10f83119b77a8fbd085a5550955f85ff"></span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">randMToN</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">M</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">N</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv48randMToNdd" title="Permalink to this definition"></a><br /></dt>
+<dd><p>this function generates a random number within a range </p>
+<p>
+This function takes as inout the min and max limits of the range and uses the rand() function to generate a random number within the range </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>M</strong> – defines the lower bownd of the range </p></li>
+<li><p><strong>N</strong> – defines the upper bound of the range</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>random number of type double within the specified range</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv48myrandomRN17rt2_assignment1_114RandomPosition7RequestERN17rt2_assignment1_114RandomPosition8ResponseE">
+<span id="_CPPv38myrandomRN17rt2_assignment1_114RandomPosition7RequestERN17rt2_assignment1_114RandomPosition8ResponseE"></span><span id="_CPPv28myrandomRN17rt2_assignment1_114RandomPosition7RequestERN17rt2_assignment1_114RandomPosition8ResponseE"></span><span id="myrandom__rt2_assignment1_1::RandomPosition::RequestR.rt2_assignment1_1::RandomPosition::ResponseR"></span><span class="target" id="position__service_8cpp_1a2dbc9e29e95e08fa4aa3feea69b793da"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">myrandom</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">rt2_assignment1_1</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">RandomPosition</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Request</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">req</span></span>, <span class="n"><span class="pre">rt2_assignment1_1</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">RandomPosition</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Response</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">res</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv48myrandomRN17rt2_assignment1_114RandomPosition7RequestERN17rt2_assignment1_114RandomPosition8ResponseE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>this is the callback function of the random position server </p>
+<p>
+This function receives a request that contains min and max bounds for both x and y positions. It calls <a class="reference internal" href="#position__service_8cpp_1a10f83119b77a8fbd085a5550955f85ff"><span class="std std-ref">randMToN()</span></a> function to generate a random number within the requested ranges for x and y. For theta, it calls <a class="reference internal" href="#position__service_8cpp_1a10f83119b77a8fbd085a5550955f85ff"><span class="std std-ref">randMToN()</span></a> with min bound of -3.14 (-pi), and max bound of 3.14 (+pi) </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>req</strong> – the service request defined in RandomPosition.srv file in the srv folder of the package </p></li>
+<li><p><strong>res</strong> – the service response passed by reference to be filled by the callback function</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>always true</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv44mainiPPc">
+<span id="_CPPv34mainiPPc"></span><span id="_CPPv24mainiPPc"></span><span id="main__i.cPP"></span><span class="target" id="position__service_8cpp_1a3c04138a5bfe5d72780bb7e82a18e627"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">main</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">argc</span></span>, <span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">argv</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv44mainiPPc" title="Permalink to this definition"></a><br /></dt>
+<dd><p>this is main function of the node </p>
+<p>It initializes the node handle and the /position_server service, and assigns <a class="reference internal" href="#position__service_8cpp_1a2dbc9e29e95e08fa4aa3feea69b793da"><span class="std std-ref">myrandom()</span></a> as a callback function to the service </p>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="state-machine">
+<h1>State Machine<a class="headerlink" href="#state-machine" title="Permalink to this headline"></a></h1>
+<p>this file is an implementation of the state machine node </p>
+<p><p>Services:</p>
+<p>/user_interface</p>
+<dl class="simple">
+<dt><strong>Author</strong></dt><dd><p>Carmine Recchiuto </p>
+</dd>
+<dt><strong>Version</strong></dt><dd><p>0.1 </p>
+</dd>
+<dt><strong>Date</strong></dt><dd><p>20/09/2021</p>
+</dd>
+</dl>
+</p>
+<p><p>Clients:</p>
+<p>/position_server</p>
+</p>
+<p>/go_to_point_ac</p>
+<p>Description :</p>
+<p>This node implements the state machine. When the user sends a start command, the node gets a random position (x,y, theta) using the /position_server. Then, it sends this position as a goal to /go_to_point_ac action service. While the robot hasn’t reached the goal yet, it continues to check if the user has sent a cancel command. If yes, it sends a cancel request to the action service /go_to_point_ac When the robot reaches the goal, it perceives another random goal </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv414user_interfaceRN17rt2_assignment1_17Command7RequestERN17rt2_assignment1_17Command8ResponseE">
+<span id="_CPPv314user_interfaceRN17rt2_assignment1_17Command7RequestERN17rt2_assignment1_17Command8ResponseE"></span><span id="_CPPv214user_interfaceRN17rt2_assignment1_17Command7RequestERN17rt2_assignment1_17Command8ResponseE"></span><span id="user_interface__rt2_assignment1_1::Command::RequestR.rt2_assignment1_1::Command::ResponseR"></span><span class="target" id="state__machine_8cpp_1a6aee9737b5a8dd6d27ad8b57d1ef65fa"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">user_interface</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">rt2_assignment1_1</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Command</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Request</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">req</span></span>, <span class="n"><span class="pre">rt2_assignment1_1</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Command</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Response</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">res</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv414user_interfaceRN17rt2_assignment1_17Command7RequestERN17rt2_assignment1_17Command8ResponseE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>this is the callback function of /user_interface service </p>
+<p>
+This function takes as input the command request of type string. It can be either “start” or “stop”. It fills the global variable start according to the received command. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>req</strong> – the service request defined in Command.srv file in the srv folder of the package. It contains a srting of “start” or “stop” </p></li>
+<li><p><strong>res</strong> – the service response passed by reference to be filled by the callback function</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>always true</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="state__machine_8cpp_1a3c04138a5bfe5d72780bb7e82a18e627"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">main</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">argc</span></span>, <span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">argv</span></span><span class="sig-paren">)</span><br /></dt>
+<dd><p>this is the main function of the node </p>
+<p>It initializes the node handle, the server of the /user_interface service, the client to /position_server , and the action client to /go_to_point_ac It continuously checks for the value of the global variable start. If it is true, the node gets a random position by calling /position_server with x_min and y_min = -5.0 and x_max and y_max = 5.0 Then, it sends the received random position as a new goal to the action service /go_to_point_ac While the robot hasn’t reached the goal yet, it continues to check if the user has sent a cancel command. If yes, it sends a cancel request to the action service /go_to_point_ac When the robot reaches the goal, it goes over the same loop to go to another random goal. </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-variables">Variables</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv45start">
+<span id="_CPPv35start"></span><span id="_CPPv25start"></span><span id="start__b"></span><span class="target" id="state__machine_8cpp_1ab376b87f96a574a793c03c53e75afec8"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">start</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">false</span></span><a class="headerlink" href="#_CPPv45start" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Carmine Recchiuto.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

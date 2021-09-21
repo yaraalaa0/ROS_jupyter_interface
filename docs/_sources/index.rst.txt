@@ -1,0 +1,42 @@
+.. RT2_Assignment1_1 documentation master file, created by
+   sphinx-quickstart on Tue Sep 21 18:33:17 2021.
+   You can adapt this file completely to your liking, but it should at least
+   contain the root `toctree` directive.
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Contents:
+
+Indices and tables
+==================
+
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`
+
+RT2_Assignment1_1's documentation!
+**********************************
+
+This is the documentation of the RT2_Assignment1_1 package!
+
+Go To Point Action
+===================
+.. automodule:: scripts.go_to_point_ac
+   :members:
+   
+User Interface
+=====================
+.. automodule:: scripts.user_interface
+   :members:
+   
+Position Service
+=====================
+
+.. doxygenfile:: position_service.cpp
+   :project: RT2_Assignment1_1
+
+   
+State Machine
+=====================
+.. doxygenfile:: state_machine.cpp
+   :project: RT2_Assignment1_1
